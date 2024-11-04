@@ -1,0 +1,34 @@
+{
+    "name": "CarControls",
+    "maps": [
+        {
+            "name": "Driving",
+            "id": "59602a47-ae9e-44bb-aeac-23a2da832a52",
+            "actions": [
+                {
+                    "name": "Accelerate",
+                    "type": "Button",
+                    "id": "ee89a6e4-85d4-4a6f-97b5-7df47c09cc84",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b7f27233-354d-41df-acc6-e917cee61b76",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
