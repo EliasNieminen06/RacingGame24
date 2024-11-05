@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +16,6 @@ public class CarControl : MonoBehaviour
     public float maxTurningRadiuns;
 
     [Header("Important Configuration")]
-    public InputActionReference accelerate;
     public Rigidbody rb;
 
     [Header("Other Configuration")]
@@ -23,24 +24,59 @@ public class CarControl : MonoBehaviour
     public float carFuelCapacity;
     public float carFuel;
 
+    private CarControls controls;
+
+    private bool accelerating = false;
+    private bool braking = false;
+
+    private void Awake()
+    {
+        controls = new CarControls();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        controls.Car.Accelerate.performed += OnAccelerate;
+        controls.Car.Accelerate.canceled += OnAccelerateCanceled;
+        controls.Enable();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void OnEnable()
-    {
-        accelerate.action.started += Accelerate;
+
     }
 
-    void Accelerate(InputAction.CallbackContext obj)
+    void FixedUpdate()
     {
-        print("sus");
+        if (accelerating && rb.linearVelocity.magnitude < maxSpeed)
+        {
+            rb.AddForce(transform.forward * accelerationRate * Time.fixedDeltaTime);
+        }
+        else if (!accelerating && rb.linearVelocity.magnitude > 0)
+        {
+            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.zero, (brakingForce / 5) * Time.fixedDeltaTime);
+        }
+    }
+
+    public void OnAccelerate(InputAction.CallbackContext context)
+    {
+        
+        if (context.performed)
+        {
+            accelerating = true;
+            
+        }
+    }
+
+    private void OnAccelerateCanceled(InputAction.CallbackContext context)
+    {
+        accelerating = false;
     }
 }

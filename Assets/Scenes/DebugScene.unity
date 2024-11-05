@@ -163,10 +163,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6918123
 MonoBehaviour:
@@ -197,9 +197,17 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ee89a6e4-85d4-4a6f-97b5-7df47c09cc84
     m_ActionName: 'Driving/Accelerate[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c6ec5c8-ef28-4e9a-938e-c65f4a0025e7
+    m_ActionName: 'Car/Brake[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2784106-a77e-4ccb-be99-d79291cbbd25
+    m_ActionName: 'Car/Steer[/Keyboard/d,/Keyboard/a]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Driving
+  m_DefaultActionMap: Car
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6918124
@@ -215,12 +223,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: 0
-  accelerationRate: 0
-  brakingForce: 0
-  maxSpeed: 0
+  accelerationRate: 500
+  brakingForce: 50
+  maxSpeed: 50
   steeringSensitivity: 0
   maxTurningRadiuns: 0
-  accelerate: {fileID: -8727573180026876878, guid: dd2679ca6fd664f2da5b7ed70f2c32b6, type: 3}
   rb: {fileID: 0}
   carHealth: 0
   carDamage: 0
@@ -309,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 6918121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
