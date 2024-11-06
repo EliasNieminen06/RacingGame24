@@ -24,14 +24,13 @@ public class CarControl : MonoBehaviour
     public float carFuelCapacity;
     public float carFuel;
 
-    private CarControls controls;
-
     private bool accelerating = false;
     private bool braking = false;
+    private CarControls carControls;
 
     private void Awake()
     {
-        controls = new CarControls();
+        carControls = new CarControls();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,9 +41,7 @@ public class CarControl : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Car.Accelerate.performed += OnAccelerate;
-        controls.Car.Accelerate.canceled += OnAccelerateCanceled;
-        controls.Enable();
+        carControls.Enable();
     }
 
     // Update is called once per frame
@@ -55,28 +52,12 @@ public class CarControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (accelerating && rb.linearVelocity.magnitude < maxSpeed)
-        {
-            rb.AddForce(transform.forward * accelerationRate * Time.fixedDeltaTime);
-        }
-        else if (!accelerating && rb.linearVelocity.magnitude > 0)
-        {
-            rb.linearVelocity = Vector3.MoveTowards(rb.linearVelocity, Vector3.zero, (brakingForce / 5) * Time.fixedDeltaTime);
-        }
+        rb.AddForce(transform.forward * GetAccelerationDirection() * accelerationRate * Time.fixedDeltaTime);
+        rb.
     }
 
-    public void OnAccelerate(InputAction.CallbackContext context)
+    float GetAccelerationDirection()
     {
-        
-        if (context.performed)
-        {
-            accelerating = true;
-            
-        }
-    }
-
-    private void OnAccelerateCanceled(InputAction.CallbackContext context)
-    {
-        accelerating = false;
+        return carControls.Car.Accelerate.ReadValue<float>();
     }
 }
