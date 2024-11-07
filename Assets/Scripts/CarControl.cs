@@ -12,8 +12,9 @@ public class CarControl : MonoBehaviour
     public float maxSpeed;
 
     [Header("Steering Control")]
+    public float currentSteeringAngle;
     public float steeringSensitivity;
-    public float maxTurningRadiuns;
+    public float maxSteeringAngle;
 
     [Header("Important Configuration")]
     public Rigidbody rb;
@@ -24,8 +25,6 @@ public class CarControl : MonoBehaviour
     public float carFuelCapacity;
     public float carFuel;
 
-    private bool accelerating = false;
-    private bool braking = false;
     private CarControls carControls;
 
     private void Awake()
@@ -52,12 +51,42 @@ public class CarControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(transform.forward * GetAccelerationDirection() * accelerationRate * Time.fixedDeltaTime);
-        rb.
+        UpdateSpeed();
+        UpdateSteer();
+    }
+
+    void UpdateSpeed()
+    {
+        currentSpeed = rb.linearVelocity.magnitude;
+        if (GetAccelerationDirection() > 0 || GetAccelerationDirection() < 0 && rb.linearVelocity.magnitude < maxSpeed)
+        {
+            rb.AddForce(transform.forward * GetAccelerationDirection() * accelerationRate * Time.fixedDeltaTime);
+        }
+        else
+        {
+            if (rb.linearVelocity.magnitude > 0.1f)
+            {
+                rb.linearVelocity -= rb.linearVelocity.normalized * Mathf.Clamp01(1 - (rb.linearVelocity.magnitude / maxSpeed)) * Time.deltaTime * brakingForce;
+            }
+            else
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
+        }
+    }
+
+    void UpdateSteer()
+    {
+        
     }
 
     float GetAccelerationDirection()
     {
         return carControls.Car.Accelerate.ReadValue<float>();
+    }
+
+    float GetSteeringDirection()
+    {
+        return carControls.Car.Steer.ReadValue<float>();
     }
 }

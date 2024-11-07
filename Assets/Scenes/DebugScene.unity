@@ -224,10 +224,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpeed: 0
   accelerationRate: 500
-  brakingForce: 50
+  brakingForce: 10
   maxSpeed: 50
-  steeringSensitivity: 0
-  maxTurningRadiuns: 0
+  currentSteeringAngle: 0
+  steeringSensitivity: 100
+  maxSteeringAngle: 50
   rb: {fileID: 0}
   carHealth: 0
   carDamage: 0
