@@ -127,7 +127,7 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""0ad982e9-7619-4f6d-b337-ce0a09ff818f"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -149,7 +149,7 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""7ee649d6-840e-4ba3-a460-989bd590bd4f"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
