@@ -32,6 +32,8 @@ public class CarController : MonoBehaviour
     Vector3 currentCarLocalVelocity = Vector3.zero;
     float carVelocityRatio = 0;
 
+    public float currentCarSpeed;
+
     private void Awake()
     {
         carInputActions = new CarInputActions();
@@ -50,6 +52,7 @@ public class CarController : MonoBehaviour
     private void Update()
     {
         GetPlayerInput();
+        currentCarSpeed = rb.linearVelocity.magnitude * 3.6f;
     }
 
     private void FixedUpdate()
