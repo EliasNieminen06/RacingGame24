@@ -61,6 +61,7 @@ public class CarController : MonoBehaviour
         GroundCheck();
         CalculateCarVelocity();
         Movement();
+        Jump();
     }
 
     private void Suspension()
@@ -159,5 +160,13 @@ public class CarController : MonoBehaviour
         Vector3 dragForce = transform.right * dragMagnitude;
 
         rb.AddForceAtPosition(dragForce, rb.worldCenterOfMass, ForceMode.Acceleration);
+    }
+
+    private void Jump()
+    {
+        if (carInputActions.Drive.Jump.WasPressedThisFrame())
+        {
+            print("sus");
+        }
     }
 }

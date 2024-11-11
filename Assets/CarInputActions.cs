@@ -44,6 +44,15 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Value"",
+                    ""id"": ""0ce755e5-2a00-4722-8a44-5564f84d8bb4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -156,6 +165,28 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Steer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e92626d8-77cf-47ba-b9fa-84280efa2842"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85a24523-1b14-46b4-832d-2e7c0c8c0e4f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +197,7 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
         m_Drive = asset.FindActionMap("Drive", throwIfNotFound: true);
         m_Drive_Accelerate = m_Drive.FindAction("Accelerate", throwIfNotFound: true);
         m_Drive_Steer = m_Drive.FindAction("Steer", throwIfNotFound: true);
+        m_Drive_Jump = m_Drive.FindAction("Jump", throwIfNotFound: true);
     }
 
     ~@CarInputActions()
@@ -234,12 +266,14 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
     private List<IDriveActions> m_DriveActionsCallbackInterfaces = new List<IDriveActions>();
     private readonly InputAction m_Drive_Accelerate;
     private readonly InputAction m_Drive_Steer;
+    private readonly InputAction m_Drive_Jump;
     public struct DriveActions
     {
         private @CarInputActions m_Wrapper;
         public DriveActions(@CarInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Accelerate => m_Wrapper.m_Drive_Accelerate;
         public InputAction @Steer => m_Wrapper.m_Drive_Steer;
+        public InputAction @Jump => m_Wrapper.m_Drive_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Drive; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -255,6 +289,9 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
             @Steer.started += instance.OnSteer;
             @Steer.performed += instance.OnSteer;
             @Steer.canceled += instance.OnSteer;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IDriveActions instance)
@@ -265,6 +302,9 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
             @Steer.started -= instance.OnSteer;
             @Steer.performed -= instance.OnSteer;
             @Steer.canceled -= instance.OnSteer;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IDriveActions instance)
@@ -286,5 +326,6 @@ public partial class @CarInputActions: IInputActionCollection2, IDisposable
     {
         void OnAccelerate(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
