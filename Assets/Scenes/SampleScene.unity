@@ -292,6 +292,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragCoefficient: 50
+  jumpForce: 10000
   currentCarSpeed: 0
 --- !u!54 &97123915
 Rigidbody:

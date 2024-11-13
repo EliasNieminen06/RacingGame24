@@ -22,12 +22,16 @@ public class CarController : MonoBehaviour
     float moveInput = 0;
     float steerInput = 0;
 
+    bool canJump = false;
+    bool jumped = false;
+
     public float acceleration = 25f;
     public float maxSpeed = 100f;
     public float deceleration = 10f;
     public float steerStrength = 15f;
     public AnimationCurve turningCurve;
     public float dragCoefficient = 1f;
+    public float jumpForce = 20;
 
     Vector3 currentCarLocalVelocity = Vector3.zero;
     float carVelocityRatio = 0;
@@ -148,7 +152,7 @@ public class CarController : MonoBehaviour
 
     private void Turn()
     {
-        rb.AddRelativeTorque (steerStrength * steerInput * turningCurve.Evaluate(Mathf.Abs(carVelocityRatio)) * Mathf.Sign(carVelocityRatio) * rb.transform.up, ForceMode.Acceleration);
+        rb.AddRelativeTorque(steerStrength * steerInput * turningCurve.Evaluate(Mathf.Abs(carVelocityRatio)) * Mathf.Sign(carVelocityRatio) * rb.transform.up, ForceMode.Acceleration);
     }
 
     private void SidewaysDrag()
@@ -164,9 +168,10 @@ public class CarController : MonoBehaviour
 
     private void Jump()
     {
-        if (carInputActions.Drive.Jump.WasPressedThisFrame())
+        
+        if (carInputActions.Drive.Jump.IsPressed() && isGrounded)
         {
-            print("sus");
+            rb.AddRelativeForce(transform.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
