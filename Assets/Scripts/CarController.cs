@@ -171,7 +171,7 @@ public class CarController : MonoBehaviour
         
         if (carInputActions.Drive.Jump.IsPressed() && isGrounded)
         {
-            rb.AddRelativeForce(transform.up * jumpForce, ForceMode.Impulse);
+            rb.AddRelativeForce(transform.up * jumpForce * 100, ForceMode.Force);
         }
     }
 }
