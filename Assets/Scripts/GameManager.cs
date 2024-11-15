@@ -15,9 +15,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         Application.targetFrameRate = 60;
     }
-
-
-
+    
     private void Update()
     {
         timer += Time.deltaTime;
@@ -38,5 +36,6 @@ public class GameManager : MonoBehaviour
     private void Finish()
     {
         print("You finished in: " + formatedTime);
+        LeaderBoardManager.instance.AddPlayerStats(Random.Range(1, 1000).ToString(), timer);
     }
 }
