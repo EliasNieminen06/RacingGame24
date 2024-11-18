@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI timerSTR;
 
     public bool timer = false;
+    public GameObject pauseCanvas;
+    public GameObject gameCanvas;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,5 +18,15 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         timerSTR.text = GameManager.instance.formatedTime;
+        if (GameManager.instance.paused)
+        {
+            gameCanvas.SetActive(false);
+            pauseCanvas.SetActive(true);
+        }
+        else
+        {
+            pauseCanvas.SetActive(false);
+            gameCanvas.SetActive(true);
+        }
     }
 }
