@@ -1,28 +1,42 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public int totalLaps = 3;
-    public FinishLine finishLine;
     public float timer;
     public string formatedTime;
-    public bool finished;
+    public bool gameOn;
     public bool paused = false;
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-
-        if (finishLine.currentLap > totalLaps && !finished)
+        if (gameOn)
         {
-            finished = true;
+            UpdateGame();
+        }
+    }
+
+    void UpdateGame()
+    {
+        timer += Time.deltaTime;
+        if (FinishLine.instance.currentLap > totalLaps && gameOn)
+        {
             Finish();
         }
 
@@ -40,8 +54,9 @@ public class GameManager : MonoBehaviour
 
     private void Finish()
     {
-        print("You finished in: " + formatedTime);
+        gameOn = false;
         LeaderBoardManager.instance.AddPlayerStats(Random.Range(100, 999).ToString(), timer);
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void TogglePause()
@@ -57,5 +72,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             Application.targetFrameRate = 144;
         }
+    }
+
+    public void StartGame()
+    {
+        gameOn = true;
+        timer = 0;
     }
 }

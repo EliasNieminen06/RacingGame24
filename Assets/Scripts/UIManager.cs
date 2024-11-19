@@ -4,20 +4,20 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI timerSTR;
+    public TextMeshProUGUI speedSTR;
 
     public bool timer = false;
     public GameObject pauseCanvas;
     public GameObject gameCanvas;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         timerSTR.text = GameManager.instance.formatedTime;
+
+        int carSpeed = (int)CarController.instance.currentCarSpeed;
+        speedSTR.text = carSpeed.ToString() + " km/h";
+
         if (GameManager.instance.paused)
         {
             gameCanvas.SetActive(false);

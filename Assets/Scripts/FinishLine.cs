@@ -2,11 +2,25 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour
 {
+    public static FinishLine instance;
+
     public GameObject checkMid;
     public GameObject checkBack;
     public int currentLap = 0;
     bool backFirst = false;
     bool midFirst = false;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

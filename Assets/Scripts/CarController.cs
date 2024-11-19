@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
+    public static CarController instance;
+
     private CarInputActions carInputActions;
 
     Rigidbody rb;
@@ -40,6 +42,14 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
         carInputActions = new CarInputActions();
     }
 
