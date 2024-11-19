@@ -1,5 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -37,6 +39,7 @@ public class CarController : MonoBehaviour
 
     Vector3 currentCarLocalVelocity = Vector3.zero;
     float carVelocityRatio = 0;
+    bool canJump2 = true;
 
     public float currentCarSpeed;
 
@@ -56,6 +59,7 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void OnEnable()
@@ -65,8 +69,12 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        GetPlayerInput();
-        currentCarSpeed = rb.linearVelocity.magnitude * 3.6f;
+        if (GameManager.instance.gameOn)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            GetPlayerInput();
+            currentCarSpeed = rb.linearVelocity.magnitude * 3.6f;
+        }
     }
 
     private void FixedUpdate()
@@ -178,10 +186,17 @@ public class CarController : MonoBehaviour
 
     private void Jump()
     {
-        
-        if (carInputActions.Drive.Jump.IsPressed() && isGrounded)
+        if (carInputActions.Drive.Jump.IsPressed() && canJump2 && isGrounded)
         {
-            rb.AddRelativeForce(transform.up * jumpForce * 100, ForceMode.Force);
+            StartCoroutine(jumpWithCooldown());
         }
+    }
+
+    IEnumerator jumpWithCooldown()
+    {
+        canJump2 = false;
+        rb.AddRelativeForce(transform.up * jumpForce * 100, ForceMode.Force);
+        yield return new WaitForSeconds(1);
+        canJump2 = true;
     }
 }

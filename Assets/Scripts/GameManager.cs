@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +12,7 @@ public class GameManager : MonoBehaviour
     public string formatedTime;
     public bool gameOn;
     public bool paused = false;
+    public int countdownTime;
 
     private void Awake()
     {
@@ -76,7 +79,21 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        gameOn = true;
         timer = 0;
+        StartCoroutine(StartCountdown());
+    }
+
+    IEnumerator StartCountdown()
+    {
+        float timeRemaining = countdownTime;
+
+        while (timeRemaining > 0)
+        {
+            print(timeRemaining + " seconds left");
+            yield return new WaitForSeconds(1);
+            timeRemaining--;
+        }
+        print("GO!");
+        gameOn = true;
     }
 }

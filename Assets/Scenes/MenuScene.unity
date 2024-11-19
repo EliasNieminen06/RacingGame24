@@ -1303,6 +1303,7 @@ MonoBehaviour:
   formatedTime: 
   gameOn: 0
   paused: 0
+  countdownTime: 3
 --- !u!4 &1015256463
 Transform:
   m_ObjectHideFlags: 0
