@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Services.Core;
+using Unity.Services.Authentication;
+using Unity.Services.CloudSave;
 
 [System.Serializable]
 public class PlayerStats
