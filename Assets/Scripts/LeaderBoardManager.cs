@@ -42,6 +42,7 @@ public class LeaderBoardManager : MonoBehaviour
         {
             SortList();
         }
+        CloudSave.instance.SaveLeaderBoardData(playerStatsList);
     }
 
     public void SortList()

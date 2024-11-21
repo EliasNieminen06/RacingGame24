@@ -1,59 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.Services.CloudSave;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using Unity.Services.Core;
+using Unity.Services.Authentication;
+using Unity.Services.CloudSave;
+using Unity.Services.CloudSave.Models;
+using Unity.Services.CloudSave.Models.Data.Player;
+using SaveOptions = Unity.Services.CloudSave.Models.Data.Player.SaveOptions;
+using System.Collections.Generic;
 
-[System.Obsolete]
-public class cloudSaveScript : MonoBehaviour
+public class CloudSave : MonoBehaviour
 {
-    public Text status;
-    public InputField inpf;
+    public static CloudSave instance;
 
-    public async void Start()
+    private async void Awake()
     {
-        await UnityServices.InitializeAsync();
-    }
-
-    public async void SaveData()
-    {
-        var data = new Dictionary<string, object> { { "firstData", inpf.text } };
-        await CloudSaveService.Instance.Data.ForceSaveAsync(data);
-    }
-
-
-    public async void LoadData()
-    {
-
-        Dictionary<string, string> serverData = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string> { "firstData" });
-
-        if (serverData.ContainsKey("firstData"))
+        if (instance != null && instance != this)
         {
-            inpf.text = serverData["firstData"];
+            Destroy(this.gameObject);
         }
         else
         {
-            print("Key not found!!");
+            instance = this;
         }
-
-
+        DontDestroyOnLoad(this.gameObject);
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 
-    public async void DeleteKey()
+    public async void SaveLeaderBoardData(List<PlayerStats> leaderData)
     {
-
-        await CloudSaveService.Instance.Data.ForceDeleteAsync("firstData");
+        var data = new Dictionary<string, object> {{"LeaderData", leaderData}};
+        await CloudSaveService.Instance.Data.Player.SaveAsync(data, new SaveOptions(new PublicWriteAccessClassOptions()));
     }
 
-    public async void RetriveAllKeys()
-    {
-
-        List<string> allKeys = await CloudSaveService.Instance.Data.RetrieveAllKeysAsync();
-
-        for (int i = 0; i < allKeys.Count; i++)
-        {
-            print(allKeys[i]);
-        }
-    }
+    //public async List<PlayerStats> LoadLeaderBoardData()
+    //{
+    //    var playerData = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string> { "LeaderData" }, new LoadOptions(new PublicReadAccessClassOptions()));
+    //    if (playerData.TryGetValue("LeaderData", out var keyName))
+    //    {
+    //        return playerData;
+    //    }
+    //}
 }
