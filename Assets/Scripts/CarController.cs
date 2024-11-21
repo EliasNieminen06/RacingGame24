@@ -67,6 +67,11 @@ public class CarController : MonoBehaviour
         carInputActions.Enable();
     }
 
+    private void OnDisable()
+    {
+        carInputActions.Disable();
+    }
+
     private void Update()
     {
         if (GameManager.instance.gameOn)
