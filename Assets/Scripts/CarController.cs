@@ -156,6 +156,16 @@ public class CarController : MonoBehaviour
             Turn();
             SidewaysDrag();
         }
+        KeepStraight();
+    }
+
+    private void KeepStraight()
+    {
+        if (carInputActions.Drive.Straighten.IsPressed())
+        {
+            Vector3 currentRotation = transform.rotation.eulerAngles;
+            transform.localRotation = Quaternion.Euler(0, currentRotation.y, 0);
+        }
     }
 
     private void Acceleration()
