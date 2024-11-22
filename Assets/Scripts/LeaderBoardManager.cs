@@ -17,9 +17,9 @@ public class LeaderBoardManager : MonoBehaviour
     public static LeaderBoardManager instance;
 
     public List<PlayerStats> playerStatsList = new List<PlayerStats>();
+    bool dataLoaded = false;
 
-
-    private void Awake()
+    private async void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -30,6 +30,15 @@ public class LeaderBoardManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Update()
+    {
+        if (CloudSave.instance && !dataLoaded)
+        {
+            CloudSave.instance.LoadPublicData();
+            dataLoaded = true;
+        }
     }
 
     public void AddPlayerStats(string name, float time)
