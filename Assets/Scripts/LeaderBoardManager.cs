@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
-using Unity.Services.CloudSave;
+using Unity.Services.Leaderboards;
 
 [System.Serializable]
 public class PlayerStats
@@ -17,9 +17,9 @@ public class LeaderBoardManager : MonoBehaviour
     public static LeaderBoardManager instance;
 
     public List<PlayerStats> playerStatsList = new List<PlayerStats>();
-    bool dataLoaded = false;
+    public string leaderboardID = "TimeLeaderboard";
 
-    private async void Awake()
+    private void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -32,13 +32,11 @@ public class LeaderBoardManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Update()
+    private async void Start()
     {
-        if (CloudSave.instance && !dataLoaded)
-        {
-            CloudSave.instance.LoadPublicData();
-            dataLoaded = true;
-        }
+        await UnityServices.InitializeAsync();
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardID, 0);
     }
 
     public void AddPlayerStats(string name, float time)
@@ -47,27 +45,10 @@ public class LeaderBoardManager : MonoBehaviour
         newPlayerStats.playerName = name;
         newPlayerStats.playerTime = time;
         playerStatsList.Add(newPlayerStats);
-        if(playerStatsList.Count > 1)
-        {
-            SortList();
-        }
-        CloudSave.instance.SaveLeaderBoardData(playerStatsList);
     }
 
-    public void SortList()
+    public async void LoadLeaderboard()
     {
-        int n = playerStatsList.Count;
-        for (int i = 0; i < n - 1; i++)
-        {
-            for (int j = 0; j < n - i - 1; j++)
-            {
-                if (playerStatsList[j].playerTime > playerStatsList[j + 1].playerTime)
-                {
-                    PlayerStats temp = playerStatsList[j];
-                    playerStatsList[j] = playerStatsList[j + 1];
-                    playerStatsList[j + 1] = temp;
-                }
-            }
-        }
+        LeaderboardScoresPage leaderboardScoresPage = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardID);
     }
 }
