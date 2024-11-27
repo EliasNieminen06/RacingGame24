@@ -49,6 +49,6 @@ public class LeaderBoardManager : MonoBehaviour
 
     public async void LoadLeaderboard()
     {
-        LeaderboardScoresPage leaderboardScoresPage = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardID);
+        //LeaderboardScoresPage leaderboardScoresPage = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardID);
     }
 }

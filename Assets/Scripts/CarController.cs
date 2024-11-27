@@ -9,6 +9,10 @@ public class CarController : MonoBehaviour
 
     private CarInputActions carInputActions;
 
+    public float maxFirePower = 0;
+    public float firePower = 0;
+    public float firePowerRate = 0;
+
     Rigidbody rb;
     public Transform[] rayPoints;
     public LayerMask ground;
@@ -60,6 +64,7 @@ public class CarController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        firePower = maxFirePower;
     }
 
     private void OnEnable()
@@ -79,6 +84,7 @@ public class CarController : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
             GetPlayerInput();
             currentCarSpeed = rb.linearVelocity.magnitude * 3.6f;
+            firePower -= firePowerRate * Time.deltaTime;
         }
     }
 
@@ -213,5 +219,18 @@ public class CarController : MonoBehaviour
         rb.AddRelativeForce(transform.up * jumpForce * 100, ForceMode.Force);
         yield return new WaitForSeconds(1);
         canJump2 = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Firefly"))
+        {
+            Destroy(other.gameObject);
+            firePower += 10;
+            if(firePower > maxFirePower)
+            {
+                firePower = maxFirePower;
+            }
+        }
     }
 }
