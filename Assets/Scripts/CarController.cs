@@ -12,6 +12,7 @@ public class CarController : MonoBehaviour
     public float maxFirePower = 0;
     public float firePower = 0;
     public float firePowerRate = 0;
+    public float rechargeRate = 0;
 
     Rigidbody rb;
     public Transform[] rayPoints;
@@ -226,7 +227,7 @@ public class CarController : MonoBehaviour
         if (other.CompareTag("Firefly"))
         {
             Destroy(other.gameObject);
-            firePower += 10;
+            firePower += rechargeRate;
             if(firePower > maxFirePower)
             {
                 firePower = maxFirePower;

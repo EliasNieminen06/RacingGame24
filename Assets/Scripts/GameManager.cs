@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     private void Finish()
     {
         gameOn = false;
-        LeaderBoardManager.instance.AddPlayerStats(Random.Range(100, 999).ToString(), timer);
+        LeaderBoardManager.instance.AddScoreWithMetadata(timer, Random.Range(100, 999).ToString());
         SceneManager.LoadScene("MenuScene");
     }
 

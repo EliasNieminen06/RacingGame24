@@ -5,10 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager instance;
+
     public List<TextMeshProUGUI> leaderSTR = new List<TextMeshProUGUI>();
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        UpdateLeaderboard();
+    }
+
+    // Update is called once per frame
+    public void UpdateLeaderboard()
     {
         if (LeaderBoardManager.instance.playerStatsList.Count != 0)
         {
@@ -25,12 +45,6 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StartGame()
