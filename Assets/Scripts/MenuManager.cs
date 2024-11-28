@@ -9,6 +9,9 @@ public class MenuManager : MonoBehaviour
 
     public List<TextMeshProUGUI> leaderSTR = new List<TextMeshProUGUI>();
 
+    public Canvas mainMenuCanvas;
+    public Canvas newScoreCanvas;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -25,6 +28,12 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         UpdateLeaderboard();
+    }
+
+    public void NewScore()
+    {
+        newScoreCanvas.enabled = true;
+        mainMenuCanvas.enabled = false;
     }
 
     // Update is called once per frame
