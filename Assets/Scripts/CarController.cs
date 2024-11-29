@@ -46,6 +46,9 @@ public class CarController : MonoBehaviour
     float carVelocityRatio = 0;
     bool canJump2 = true;
 
+    public AudioSource audioSource;
+    public AudioClip fireFlyCollectSound;
+
     public float currentCarSpeed;
 
     private void Awake()
@@ -66,6 +69,7 @@ public class CarController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         firePower = maxFirePower;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -241,6 +245,8 @@ public class CarController : MonoBehaviour
             {
                 firePower = maxFirePower;
             }
+            audioSource.clip = fireFlyCollectSound;
+            audioSource.Play();
         }
     }
 }
