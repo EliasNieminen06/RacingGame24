@@ -58,6 +58,13 @@ public class GameManager : MonoBehaviour
     private void Finish()
     {
         gameOn = false;
+        SceneManager.LoadScene("NewScoreScene");
+    }
+
+    public void NewScoreEntered(string name)
+    {
+        LeaderBoardManager.instance.AddScoreWithMetadata(timer, name);
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void TogglePause()

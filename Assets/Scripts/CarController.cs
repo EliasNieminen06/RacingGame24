@@ -86,7 +86,16 @@ public class CarController : MonoBehaviour
             GetPlayerInput();
             currentCarSpeed = rb.linearVelocity.magnitude * 3.6f;
             firePower -= firePowerRate * Time.deltaTime;
+            //if (firePower <= 0)
+            //{
+            //    GameFailed();
+            //}
         }
+    }
+
+    public void GameFailed()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
     private void FixedUpdate()
