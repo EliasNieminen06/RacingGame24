@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     public bool gameOn;
     public bool paused = false;
     public int countdownTime;
+    public AudioSource aS;
+    public AudioSource aSfx;
+    public AudioClip menuMusic;
+    public AudioClip gameMusic;
+    public AudioClip winSound;
 
     private void Awake()
     {
@@ -25,6 +30,13 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        aS.clip = menuMusic;
+        aS.loop = true;
+        aS.Play();
     }
 
     private void Update()
@@ -59,6 +71,11 @@ public class GameManager : MonoBehaviour
     {
         gameOn = false;
         SceneManager.LoadScene("NewScoreScene");
+        aSfx.clip = winSound;
+        aSfx.Play();
+        aS.clip = menuMusic;
+        aS.loop = true;
+        aS.Play();
     }
 
     public void NewScoreEntered(string name)
@@ -84,6 +101,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        aS.clip = gameMusic;
+        aS.loop = true;
+        aS.Play();
         timer = 0;
         StartCoroutine(StartCountdown());
     }

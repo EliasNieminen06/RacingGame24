@@ -1302,7 +1302,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   dragCoefficient: 100
   jumpForce: 7250
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 97123917}
   fireFlyCollectSound: {fileID: 8300000, guid: 82fbb74bf036b453cbbbfeaaa75cc1f0, type: 3}
   currentCarSpeed: 0
 --- !u!54 &97123915
@@ -1365,7 +1365,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
