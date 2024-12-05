@@ -248,5 +248,9 @@ public class CarController : MonoBehaviour
             audioSource.clip = fireFlyCollectSound;
             audioSource.Play();
         }
+        if (other.CompareTag("water"))
+        {
+            GameManager.instance.Fail();
+        }
     }
 }

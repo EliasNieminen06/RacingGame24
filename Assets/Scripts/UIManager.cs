@@ -4,6 +4,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+
     public TextMeshProUGUI timerSTR;
     public TextMeshProUGUI speedSTR;
     public TextMeshProUGUI countdownSTR;
@@ -14,6 +16,19 @@ public class UIManager : MonoBehaviour
     public bool timer = false;
     public GameObject pauseCanvas;
     public GameObject gameCanvas;
+
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,6 +59,6 @@ public class UIManager : MonoBehaviour
         {
             lapsSTR.text = "Current Lap " + FinishLine.instance.currentLap.ToString() + "/" + GameManager.instance.totalLaps.ToString();
         }
-        
+        countdownSTR.text = GameManager.instance.countdownStr;
     }
 }

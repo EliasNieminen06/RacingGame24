@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip gameMusic;
     public AudioClip winSound;
+    public float timeRemainingCountdown;
+    public string countdownStr;
 
     private void Awake()
     {
@@ -78,6 +80,15 @@ public class GameManager : MonoBehaviour
         aS.Play();
     }
 
+    public void Fail()
+    {
+        gameOn = false;
+        SceneManager.LoadScene("MenuScene");
+        aS.clip = menuMusic;
+        aS.loop = true;
+        aS.Play();
+    }
+
     public void NewScoreEntered(string name)
     {
         LeaderBoardManager.instance.AddScoreWithMetadata(timer, name);
@@ -110,15 +121,17 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartCountdown()
     {
-        float timeRemaining = countdownTime;
+        timeRemainingCountdown = countdownTime;
 
-        while (timeRemaining > 0)
+        while (timeRemainingCountdown > 0)
         {
-            print(timeRemaining + " seconds left");
+            countdownStr = timeRemainingCountdown.ToString();
             yield return new WaitForSeconds(1);
-            timeRemaining--;
+            timeRemainingCountdown--;
         }
-        print("GO!");
+        countdownStr = "GO!";
         gameOn = true;
+        yield return new WaitForSeconds(2);
+        countdownStr = "";
     }
 }
