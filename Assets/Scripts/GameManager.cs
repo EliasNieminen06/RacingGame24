@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public AudioClip menuMusic;
     public AudioClip gameMusic;
     public AudioClip winSound;
+    public AudioClip loseSound;
+    public AudioClip cdSound;
     public float timeRemainingCountdown;
     public string countdownStr;
 
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
     {
         gameOn = false;
         SceneManager.LoadScene("MenuScene");
+        aSfx.clip = loseSound;
+        aSfx.Play();
         aS.clip = menuMusic;
         aS.loop = true;
         aS.Play();
@@ -121,8 +125,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartCountdown()
     {
+        yield return new WaitForSeconds(1);
+        aSfx.clip = cdSound;
+        aSfx.Play();
         timeRemainingCountdown = countdownTime;
-
         while (timeRemainingCountdown > 0)
         {
             countdownStr = timeRemainingCountdown.ToString();

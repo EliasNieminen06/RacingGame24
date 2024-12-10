@@ -35,8 +35,11 @@ public class UIManager : MonoBehaviour
     {
         timerSTR.text = GameManager.instance.formatedTime;
 
-        powerSlider.maxValue = CarController.instance.maxFirePower;
-        powerSlider.value = CarController.instance.firePower;
+        if (powerSlider != null)
+        {
+            powerSlider.maxValue = CarController.instance.maxFirePower;
+            powerSlider.value = CarController.instance.firePower;
+        }
 
         int carSpeed = (int)CarController.instance.currentCarSpeed;
         speedSTR.text = carSpeed.ToString() + " km/h";
