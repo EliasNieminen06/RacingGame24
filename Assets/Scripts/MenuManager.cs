@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class MenuManager : MonoBehaviour
 
     public Canvas mainMenuCanvas;
     public Canvas optionsMenuCanvas;
+    public Button mms;
+    public Button oms;
 
     private void Awake()
     {
@@ -24,16 +28,18 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         UpdateLeaderboard();
+        mms.Select();
     }
 
     public void ToggleOptions()
     {
         mainMenuCanvas.enabled = !mainMenuCanvas.enabled;
         optionsMenuCanvas.enabled = !optionsMenuCanvas.enabled;
+        if (!mainMenuCanvas.enabled) oms.Select();
+        else mms.Select();
     }
 
     // Update is called once per frame

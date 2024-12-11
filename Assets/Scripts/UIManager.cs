@@ -32,9 +32,13 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.formatedTime != null)
+        if (GameManager.instance.formatedTime != "")
         {
             timerSTR.text = GameManager.instance.formatedTime;
+        }
+        else
+        {
+            timerSTR.text = "00:00:00";
         }
 
         if (powerSlider != null)
