@@ -30,10 +30,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timerSTR.text = GameManager.instance.formatedTime;
+        if (GameManager.instance.formatedTime != null)
+        {
+            timerSTR.text = GameManager.instance.formatedTime;
+        }
 
         if (powerSlider != null)
         {
@@ -56,11 +58,11 @@ public class UIManager : MonoBehaviour
         }
         if (FinishLine.instance.currentLap == 0)
         {
-            lapsSTR.text = "Current Lap 1/" + GameManager.instance.totalLaps.ToString();
+            lapsSTR.text = "Lap 1/" + GameManager.instance.totalLaps.ToString();
         }
         else
         {
-            lapsSTR.text = "Current Lap " + FinishLine.instance.currentLap.ToString() + "/" + GameManager.instance.totalLaps.ToString();
+            lapsSTR.text = "Lap " + FinishLine.instance.currentLap.ToString() + "/" + GameManager.instance.totalLaps.ToString();
         }
         countdownSTR.text = GameManager.instance.countdownStr;
     }
