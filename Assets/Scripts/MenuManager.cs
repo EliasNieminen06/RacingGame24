@@ -60,6 +60,10 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            leaderSTR[0].text = "No Entries Found.";
+        }
     }
 
     public void StartGame()
