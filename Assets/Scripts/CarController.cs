@@ -252,5 +252,9 @@ public class CarController : MonoBehaviour
         {
             GameManager.instance.Fail();
         }
+        if (other.CompareTag("Bullet"))
+        {
+            GameManager.instance.Fail();
+        }
     }
 }
