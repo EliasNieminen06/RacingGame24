@@ -2060,7 +2060,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4708983865775427591, guid: 89769c186a0054e31a7a84e03e25a976, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.01
+      value: 23.81
       objectReference: {fileID: 0}
     - target: {fileID: 4708983865775427591, guid: 89769c186a0054e31a7a84e03e25a976, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2068,7 +2068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4708983865775427591, guid: 89769c186a0054e31a7a84e03e25a976, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.71
+      value: 27.58
       objectReference: {fileID: 0}
     - target: {fileID: 4708983865775427591, guid: 89769c186a0054e31a7a84e03e25a976, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10242,7 +10242,7 @@ Light:
   m_InnerSpotAngle: 179
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -15779,7 +15779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f75b414be1bd488da82bcbfe47c9b1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.02
+      value: -15.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f75b414be1bd488da82bcbfe47c9b1b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15787,7 +15787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f75b414be1bd488da82bcbfe47c9b1b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.94
+      value: 7.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f75b414be1bd488da82bcbfe47c9b1b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17742,7 +17742,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0.8
@@ -19827,7 +19827,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1

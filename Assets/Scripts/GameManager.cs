@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
+        Application.targetFrameRate = 24;
     }
 
     private void Start()
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     private void Finish()
     {
+        Application.targetFrameRate = 24;
         gameOn = false;
         SceneManager.LoadScene("NewScoreScene");
         aSfx.clip = winSound;
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void Fail()
     {
+        Application.targetFrameRate = 24;
         gameOn = false;
         SceneManager.LoadScene("MenuScene");
         aSfx.clip = loseSound;
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
         if (paused)
         {
             Time.timeScale = 0;
-            Application.targetFrameRate = 30;
+            Application.targetFrameRate = 24;
         }
         else
         {
@@ -116,6 +119,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        Application.targetFrameRate = 144;
         aS.clip = gameMusic;
         aS.loop = true;
         aS.Play();
