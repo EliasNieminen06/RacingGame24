@@ -13,8 +13,10 @@ public class MenuManager : MonoBehaviour
 
     public Canvas mainMenuCanvas;
     public Canvas optionsMenuCanvas;
+    public Canvas controlsMenuCanvas;
     public Button mms;
     public Button oms;
+    public Button cms;
 
     private void Awake()
     {
@@ -39,6 +41,14 @@ public class MenuManager : MonoBehaviour
         mainMenuCanvas.enabled = !mainMenuCanvas.enabled;
         optionsMenuCanvas.enabled = !optionsMenuCanvas.enabled;
         if (!mainMenuCanvas.enabled) oms.Select();
+        else mms.Select();
+    }
+
+    public void ToggleControls()
+    {
+        mainMenuCanvas.enabled = !mainMenuCanvas.enabled;
+        controlsMenuCanvas.enabled = !controlsMenuCanvas.enabled;
+        if (!mainMenuCanvas.enabled) cms.Select();
         else mms.Select();
     }
 
@@ -70,5 +80,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
         GameManager.instance.StartGame();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

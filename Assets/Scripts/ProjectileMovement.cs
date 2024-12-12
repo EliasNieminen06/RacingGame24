@@ -7,6 +7,7 @@ public class ProjectileMovement : MonoBehaviour
 
     private Rigidbody rb;
     private float timeAlive;
+    public GameObject destroyParticle;
 
     private void Awake()
     {
@@ -27,12 +28,18 @@ public class ProjectileMovement : MonoBehaviour
 
         if (timeAlive >= lifetime)
         {
+            GameObject newParticle = Instantiate(destroyParticle);
+            newParticle.transform.position = transform.position;
             Destroy(gameObject);
+            Destroy(newParticle, 1);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject newParticle = Instantiate(destroyParticle);
+        newParticle.transform.position = transform.position;
         Destroy(gameObject);
+        Destroy(newParticle, 1);
     }
 }

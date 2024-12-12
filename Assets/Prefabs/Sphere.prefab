@@ -99,7 +99,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifetime: 5
+  destroyParticle: {fileID: 4664232678312709356, guid: ba0405161d9d54312805709b9b07544b, type: 3}
 --- !u!54 &2048959417448368239
 Rigidbody:
   m_ObjectHideFlags: 0

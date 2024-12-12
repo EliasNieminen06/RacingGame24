@@ -1322,6 +1322,7 @@ MonoBehaviour:
   jumpForce: 7250
   audioSource: {fileID: 97123917}
   fireFlyCollectSound: {fileID: 8300000, guid: b62430af72a664f7aad9a88e4a51ae45, type: 3}
+  fireFlyCollectParticle: {fileID: 4664232678312709356, guid: d8f15262c86d149a9b6a9d164abb0e76, type: 3}
   currentCarSpeed: 0
 --- !u!54 &97123915
 Rigidbody:
@@ -6681,7 +6682,7 @@ Transform:
   m_GameObject: {fileID: 475726753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.335, y: 4.635, z: 18.954}
+  m_LocalPosition: {x: -26.343, y: 4.733, z: 19.064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23153,8 +23154,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149165726103}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.91865, z: -0, w: 0.3950726}
-  m_LocalPosition: {x: -58.98, y: -1.67, z: 14.13}
+  m_LocalRotation: {x: -0.022302117, y: 0.91806364, z: 0.03493039, w: 0.394261}
+  m_LocalPosition: {x: -58.030865, y: -3.2278442, z: 13.673927}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

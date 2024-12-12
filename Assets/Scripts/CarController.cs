@@ -49,6 +49,8 @@ public class CarController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip fireFlyCollectSound;
 
+    public GameObject fireFlyCollectParticle;
+
     public float currentCarSpeed;
 
     private void Awake()
@@ -239,7 +241,10 @@ public class CarController : MonoBehaviour
     {
         if (other.CompareTag("Firefly"))
         {
+            GameObject newParicle = Instantiate(fireFlyCollectParticle);
+            newParicle.transform.position = other.transform.position;
             Destroy(other.gameObject);
+            Destroy(newParicle, 2);
             firePower += rechargeRate;
             if(firePower > maxFirePower)
             {
