@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public bool timer = false;
     public GameObject pauseCanvas;
     public GameObject gameCanvas;
+    public GameObject tutorialCanvas;
 
 
     private void Awake()
@@ -69,5 +70,11 @@ public class UIManager : MonoBehaviour
             lapsSTR.text = "Lap " + FinishLine.instance.currentLap.ToString() + "/" + GameManager.instance.totalLaps.ToString();
         }
         countdownSTR.text = GameManager.instance.countdownStr;
+    }
+
+    public void ConfirmTutorial()
+    {
+        tutorialCanvas.SetActive(false);
+        GameManager.instance.StartGame();
     }
 }

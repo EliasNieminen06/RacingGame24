@@ -92,16 +92,11 @@ public class CarController : MonoBehaviour
             GetPlayerInput();
             currentCarSpeed = rb.linearVelocity.magnitude * 3.6f;
             firePower -= firePowerRate * Time.deltaTime;
-            //if (firePower <= 0)
-            //{
-            //    GameFailed();
-            //}
+            if (firePower <= 0)
+            {
+                GameManager.instance.Fail();
+            }
         }
-    }
-
-    public void GameFailed()
-    {
-        SceneManager.LoadScene("MenuScene");
     }
 
     private void FixedUpdate()
@@ -257,7 +252,10 @@ public class CarController : MonoBehaviour
         {
             GameManager.instance.Fail();
         }
-        if (other.CompareTag("Bullet"))
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             GameManager.instance.Fail();
         }

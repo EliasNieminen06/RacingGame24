@@ -76,10 +76,9 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void GoToGame()
     {
-        SceneManager.LoadScene("GameScene");
-        GameManager.instance.StartGame();
+        GameManager.instance.GoToGame();
     }
 
     public void QuitGame()

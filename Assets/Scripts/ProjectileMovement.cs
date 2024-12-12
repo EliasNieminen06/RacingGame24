@@ -37,9 +37,20 @@ public class ProjectileMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject newParticle = Instantiate(destroyParticle);
-        newParticle.transform.position = transform.position;
-        Destroy(gameObject);
-        Destroy(newParticle, 1);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject newParticle = Instantiate(destroyParticle);
+            newParticle.transform.position = transform.position;
+            Destroy(gameObject);
+            Destroy(newParticle, 1);
+            GameManager.instance.Fail();
+        }
+        else
+        {
+            GameObject newParticle = Instantiate(destroyParticle);
+            newParticle.transform.position = transform.position;
+            Destroy(gameObject);
+            Destroy(newParticle, 1);
+        }
     }
 }

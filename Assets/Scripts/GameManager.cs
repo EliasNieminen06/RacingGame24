@@ -117,13 +117,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void GoToGame()
     {
+        SceneManager.LoadScene("GameScene");
         Application.targetFrameRate = 144;
         aS.clip = gameMusic;
         aS.loop = true;
         aS.Play();
         timer = 0;
+    }
+
+    public void StartGame()
+    {
         StartCoroutine(StartCountdown());
     }
 
