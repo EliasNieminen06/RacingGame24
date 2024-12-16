@@ -31,9 +31,6 @@ public class CarController : MonoBehaviour
     float moveInput = 0;
     float steerInput = 0;
 
-    bool canJump = false;
-    bool jumped = false;
-
     public float acceleration = 25f;
     public float maxSpeed = 100f;
     public float deceleration = 10f;
