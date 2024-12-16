@@ -6,7 +6,6 @@ public class MushroomShoot : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform shootingPoint;
     public float cooldownTime = 2f;
-    private float lastShootTime;
 
     private void Start()
     {

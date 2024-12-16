@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxFirePower: 100
   firePower: 0
-  firePowerRate: 5
+  firePowerRate: 4
   rechargeRate: 40
   rayPoints:
   - {fileID: 1030326662}
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   acceleration: 28
   maxSpeed: 100
   deceleration: 15
-  steerStrength: 30
+  steerStrength: 20
   turningCurve:
     serializedVersion: 2
     m_Curve:
@@ -13471,7 +13471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ( Click anywhere to start )
+  m_text: ( press enter or A to start )
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ae8887f37282d24f9b13fc2ecf5c5e1, type: 2}
   m_sharedMaterial: {fileID: 3123103638397139586, guid: 6ae8887f37282d24f9b13fc2ecf5c5e1, type: 2}
