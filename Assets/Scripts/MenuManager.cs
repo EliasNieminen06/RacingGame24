@@ -52,7 +52,6 @@ public class MenuManager : MonoBehaviour
         else mms.Select();
     }
 
-    // Update is called once per frame
     public void UpdateLeaderboard()
     {
         if (LeaderBoardManager.instance.playerStatsList.Count != 0)

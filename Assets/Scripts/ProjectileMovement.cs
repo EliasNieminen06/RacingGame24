@@ -16,14 +16,6 @@ public class ProjectileMovement : MonoBehaviour
 
     private void Update()
     {
-        if (rb != null)
-        {
-            rb.linearVelocity = transform.forward * speed;
-        }
-        else
-        {
-            Destroy(gameObject, lifetime);
-        }
         timeAlive += Time.deltaTime;
 
         if (timeAlive >= lifetime)
@@ -32,6 +24,18 @@ public class ProjectileMovement : MonoBehaviour
             newParticle.transform.position = transform.position;
             Destroy(gameObject);
             Destroy(newParticle, 1);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb != null)
+        {
+            rb.linearVelocity = transform.forward * speed;
+        }
+        else
+        {
+            Destroy(gameObject, lifetime);
         }
     }
 

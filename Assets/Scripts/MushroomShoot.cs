@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MushroomShoot : MonoBehaviour
@@ -7,17 +8,20 @@ public class MushroomShoot : MonoBehaviour
     public float cooldownTime = 2f;
     private float lastShootTime;
 
-    private void Update()
+    private void Start()
     {
-        if (Time.time - lastShootTime >= cooldownTime)
-        {
-            ShootProjectile();
-            lastShootTime = Time.time;
-        }
+        Shoot();
     }
 
-    private void ShootProjectile()
+    private void Shoot()
+    {
+        StartCoroutine(ShootProjectile());
+    }
+
+    private IEnumerator ShootProjectile()
     {
         Instantiate(projectilePrefab, shootingPoint.position, shootingPoint.rotation);
+        yield return new WaitForSeconds(cooldownTime);
+        Shoot();
     }
 }
